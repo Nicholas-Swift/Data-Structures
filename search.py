@@ -20,7 +20,11 @@ def linear_search_iterative(array, item):
 
 def linear_search_recursive(array, item, index=0):
 
-    # Base case
+    # No item
+    if index >= len(array):
+        return None
+
+    # Found item
     if array[index] == item:
         return index
 
@@ -31,8 +35,8 @@ def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    return binary_search_iterative(array, item)
-    # return binary_search_recursive(array, item)
+    #return binary_search_iterative(array, item)
+    return binary_search_recursive(array, item)
 
 
 def binary_search_iterative(array, item):
@@ -41,8 +45,8 @@ def binary_search_iterative(array, item):
     # Base cases
     if not array:
         return None
-    
-    
+
+    current_index = int(math.floor(len(array)/2))
 
     # Iterate through
     while len(array) > 1:
@@ -52,29 +56,56 @@ def binary_search_iterative(array, item):
 
         # Found item, return
         if item == array[index]:
-            return item
+            return current_index
 
         # Too low, slice to upper half of array
         if item > array[index]:
             array = array[index:]
+            current_index += int(math.floor(len(array)/2))
 
         # Too high, slice to lower half of array
         elif item < array[index]:
             array = array[:index]
+            current_index += int(math.floor(len(array)/2)) - len(array)
 
-        print(array)
-
-    # if len(array) == 1 and item == array[0]:
-    #     return item
+    # Last element in array
+    if array[0] == item:
+        return current_index
 
     # Did not find
     return None
 
+def binary_search_recursive(array, item, index=None, current_index=None):
 
-def binary_search_recursive(array, item, left=None, right=None):
-    # TODO: implement binary search recursively here
-    pass
-    # once implemented, change binary_search to call binary_search_recursive
-    # to verify that your recursive implementation passes all tests below
+    # Empty array
+    if not array:
+        return
 
-print(binary_search([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1))
+    # Set up indexes
+    if current_index is None:
+        current_index = int(math.floor(len(array)/2))
+    index = int(math.floor(len(array)/2))
+
+    # Last item
+    if len(array) == 1:
+        if array[0] == item:
+            return current_index
+        else:
+            return None
+
+    # Found item, return
+    if item == array[index]:
+        return current_index
+
+    # Too low, slice to upper half of array
+    if item > array[index]:
+        array = array[index:]
+        current_index += int(math.floor(len(array)/2))
+
+    # Too high, slice to lower half of array
+    elif item < array[index]:
+        array = array[:index]
+        current_index += int(math.floor(len(array)/2)) - len(array)
+
+    return binary_search_recursive(array, item, index, current_index)
+
