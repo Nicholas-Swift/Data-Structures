@@ -16,10 +16,6 @@ def factorial_iterative(n):
     if n < 0 or not isinstance(n, int):
         raise ValueError('factorial is undefined for n = {}'.format(n))
 
-    # check if n is one of the base cases
-    elif n == 0 or n == 1:
-        return 1
-
     # Create number (start with 1 rather than 0)
     num = 1
 
