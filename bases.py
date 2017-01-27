@@ -39,6 +39,22 @@ def decode(str_num, base):
         # Add to decimal num
         decimal_num += num_to_add * (base ** index)
 
+    # for index, num in enumerate(str_num):
+
+    #     # number to add
+    #     num_to_add = 0
+
+    #     # Check if letter
+    #     if num.isdigit():
+    #         num_to_add = int(num)
+    #     else:
+    #         num_to_add = num_from_letter(num)
+
+    #     decimal_num += num_to_add
+    #     decimal_num += decimal_num * base
+
+
+
     # Return decimal num
     return decimal_num
 
