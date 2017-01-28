@@ -28,7 +28,8 @@ class StringsTest(unittest.TestCase):
         assert is_palindrome('taco cat') is True
         assert is_palindrome('race car') is True
         assert is_palindrome('race fast safe car') is True
-        assert is_palindrome('   ') is False
+        assert is_palindrome('  b ') is True
+        assert is_palindrome('   ') is True
 
     def test_is_palindrome_with_whitespace_and_mixed_casing(self):
         # palindromes with whitespace and mixed letter casing

@@ -17,6 +17,7 @@ def is_palindrome_iterative(text):
     """Best case: Omega(n/2)"""
     """Worst case: O(n)"""
 
+    # First setting indexes
     first_index = 0
     last_index = len(text) - 1
 
@@ -26,11 +27,11 @@ def is_palindrome_iterative(text):
         while not text[first_index].isalpha():
             first_index += 1
             if first_index > len(text) - 1:
-                return False
+                return True
         while not text[last_index].isalpha():
             last_index -= 1
             if last_index < 0:
-                return False
+                return True
 
         # Not same, return
         if(text[first_index].lower() != text[last_index].lower()):
@@ -50,18 +51,14 @@ def is_palindrome_recursive(text, first_index=None, last_index=None):
         last_index = len(text) - 1
 
     # End
-    if first_index > last_index:
+    if first_index >= last_index:
         return True
 
-    # Get letters only
-    while not text[first_index].isalpha():
-        first_index += 1
-        if first_index > len(text) - 1:
-            return False
-    while not text[last_index].isalpha():
-        last_index -= 1
-        if last_index < 0:
-            return False
+    # Check letters
+    if not text[first_index].isalpha():
+        return is_palindrome_recursive(text, first_index + 1, last_index)
+    if not text[last_index].isalpha():
+        return is_palindrome_recursive(text, first_index, last_index - 1)
 
     # Not same, return
     if(text[first_index].lower() != text[last_index].lower()):
