@@ -9,22 +9,65 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str)
-    return is_palindrome_iterative(text)
-    # return is_palindrome_recursive(text)
+    #return is_palindrome_iterative(text)
+    return is_palindrome_recursive(text)
 
 
 def is_palindrome_iterative(text):
-    # TODO: implement the is_palindrome function iteratively here
-    pass
-    # once implemented, change is_palindrome to call is_palindrome_iterative
-    # to verify that your iterative implementation passes all tests
+    """Best case: Omega(n/2)"""
+    """Worst case: O(n)"""
+
+    first_index = 0
+    last_index = len(text) - 1
+
+    while(first_index <= last_index):
+
+        # Get letters only
+        while not text[first_index].isalpha():
+            first_index += 1
+            if first_index > len(text) - 1:
+                return False
+        while not text[last_index].isalpha():
+            last_index -= 1
+            if last_index < 0:
+                return False
+
+        # Not same, return
+        if(text[first_index].lower() != text[last_index].lower()):
+            return False
+
+        first_index += 1
+        last_index -= 1
+
+    return True
 
 
-def is_palindrome_recursive(text, left=None, right=None):
-    # TODO: implement the is_palindrome function recursively here
-    pass
-    # once implemented, change is_palindrome to call is_palindrome_recursive
-    # to verify that your iterative implementation passes all tests
+def is_palindrome_recursive(text, first_index=None, last_index=None):
+
+    # For first
+    if first_index is None or last_index is None:
+        first_index = 0
+        last_index = len(text) - 1
+
+    # End
+    if first_index > last_index:
+        return True
+
+    # Get letters only
+    while not text[first_index].isalpha():
+        first_index += 1
+        if first_index > len(text) - 1:
+            return False
+    while not text[last_index].isalpha():
+        last_index -= 1
+        if last_index < 0:
+            return False
+
+    # Not same, return
+    if(text[first_index].lower() != text[last_index].lower()):
+        return False
+
+    return is_palindrome_recursive(text, first_index + 1, last_index - 1)
 
 
 def main():

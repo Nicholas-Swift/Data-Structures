@@ -7,8 +7,9 @@ def num_from_letter(letter):
     return num
 
 def letter_from_num(num):
-    letter_array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w','x', 'y', 'z']
-    return letter_array[num - 10]
+    letters = 'abcdefghijklmnopqrstuvwxyz'
+    return letters[num - 10]
+
 
 def decode(str_num, base):
     """
@@ -21,39 +22,11 @@ def decode(str_num, base):
     # decimal number
     decimal_num = 0
 
-    # Reverse string
-    str_num = str_num[::-1]
-
-    # For loop through string adding to decimal num
+    # Loop through and add
     for index, num in enumerate(str_num):
-
-        # number to add
-        num_to_add = 0
-
-        # Check if letter
-        if num.isdigit():
-            num_to_add = int(num)
-        else:
-            num_to_add = num_from_letter(num)
-
-        # Add to decimal num
-        decimal_num += num_to_add * (base ** index)
-
-    # for index, num in enumerate(str_num):
-
-    #     # number to add
-    #     num_to_add = 0
-
-    #     # Check if letter
-    #     if num.isdigit():
-    #         num_to_add = int(num)
-    #     else:
-    #         num_to_add = num_from_letter(num)
-
-    #     decimal_num += num_to_add
-    #     decimal_num += decimal_num * base
-
-
+        num_to_add = int(num) if num.isdigit() else num_from_letter(num)
+        decimal_num += num_to_add
+        decimal_num *= base if index is not len(str_num) - 1 else 1
 
     # Return decimal num
     return decimal_num
@@ -66,26 +39,20 @@ def encode(num, base):
     """
     assert 2 <= base <= 36
 
-    # new base number
+    # new base num
     new_base_num = ''
 
-    # Loop through and add remainders to new_base_num
-    index = 0
+    # Loop through
     while num != 0:
         remainder = num % base
         num = num / base
+        remainder = letter_from_num(remainder) if (remainder >= 10 and base > 10) else remainder
+        new_base_num += str(remainder)
 
-        # Turn remainder into letter if needed
-        if remainder >= 10 and base > 10:
-            remainder = letter_from_num(remainder)
-
-        new_base_num = new_base_num + str(remainder)
-        index += 1
-
-    # Reverse string
+    # Reverse
     new_base_num = new_base_num[::-1]
 
-    # Return new base
+    # Return
     return new_base_num
 
 def convert(str_num, base1, base2):
@@ -94,7 +61,6 @@ def convert(str_num, base1, base2):
     """
     assert 2 <= base1 <= 36
     assert 2 <= base2 <= 36
-    # TODO: Convert number
 
     # Decode to base 10
     decimal_num = decode(str_num, base1)
@@ -118,8 +84,5 @@ def main():
     else:
         print('Usage: {} number base1 base2'.format(sys.argv[0]))
 
-def nick_test():
-    print(decode('cat', 32))
-
 if __name__ == '__main__':
-    nick_test()
+    main()
