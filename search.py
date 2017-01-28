@@ -12,6 +12,9 @@ def linear_search(array, item):
 
 def linear_search_iterative(array, item):
     """iteratively return the index of the item or None if not found"""
+    """Best case Omega(1)"""
+    """Worst case O(n)"""
+
     # loop over all array values until item is found
     for index, value in enumerate(array):
         if item == value:
@@ -21,6 +24,9 @@ def linear_search_iterative(array, item):
 
 def linear_search_recursive(array, item, index=0):
     """recursively return the index of the item or None if not found"""
+    """Best case Omega(1)"""
+    """Worst case O(n)"""
+
     # No item
     if index >= len(array):
         return None
@@ -42,6 +48,9 @@ def binary_search(array, item):
 
 def binary_search_iterative(array, item):
     """iteratively return the index of the item with binary search or None if not found"""
+    """Best case Omega(1)"""
+    """Worst case O(log(n))"""
+
     lower_index = 0
     upper_index = len(array) - 1
 
@@ -62,6 +71,9 @@ def binary_search_iterative(array, item):
 
 def binary_search_recursive(array, item, lower_index=None, upper_index=None):
     """iteratively return the index of the item with binary search or None if not found"""
+    """Best case Omega(1)"""
+    """Worst case O(log(n))"""
+
     if lower_index is None or upper_index is None:
         lower_index = 0
         upper_index = len(array) - 1
