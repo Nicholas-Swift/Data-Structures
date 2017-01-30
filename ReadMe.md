@@ -37,11 +37,8 @@
 ###  Class 3: Friday, January 27 – String Algorithms
 
 **Topics:**
-<<<<<<< HEAD
   - string searching, [palindromes](https://en.wikipedia.org/wiki/Palindrome), [anagrams](https://en.wikipedia.org/wiki/Anagram)
-=======
   - [string searching](https://en.wikipedia.org/wiki/String_searching_algorithm), [palindromes](https://en.wikipedia.org/wiki/Palindrome), [anagrams](https://en.wikipedia.org/wiki/Anagram)
->>>>>>> 57a2bb60aaca1cc4f561a776601dc8c66e8f20f4
 
 **Challenges:**
   - implement string searching function (try multiple approaches)
@@ -54,8 +51,6 @@
   - annotate functions with complexity analysis
 
 
-<<<<<<< HEAD
-=======
 ### Class 4: Monday, January 30 – List, Stack & Queue
 
 **Topics:**
@@ -82,7 +77,6 @@
 [visualgo-list]: https://visualgo.net/list
 
 
->>>>>>> 57a2bb60aaca1cc4f561a776601dc8c66e8f20f4
 ## Working with this GitHub repository
 
 This repository (located at `https://github.com/MakeSchool-18/Data-Structures`) is the course's _origin_ repository which will contain course materials including links, slides, and challenges.
