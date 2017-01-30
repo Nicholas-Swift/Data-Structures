@@ -1,10 +1,29 @@
 #!python
 
-from strings import is_palindrome
+from strings import is_palindrome, is_substring
 import unittest
 
 
 class StringsTest(unittest.TestCase):
+
+    def test_is_substring_true(self):
+        # is substring
+        assert is_substring('yo', 'o') is True
+        assert is_substring('bigbadgoat', 'gba') is True
+        assert is_substring('redgreenblue', 'green') is True
+        assert is_substring('thiss', 'iss') is True
+
+    def test_is_substring_with_non_substrings(self):
+        # is not substring
+        assert is_substring('yoo', 'b') is False
+        assert is_substring('red', 'blue') is False
+        assert is_substring('thisiscrazy', 'thisisabsolutelycrazy') is False
+        assert is_substring('pink', 'pinf') is False
+
+    def test_is_substring_with_mixed_casing(self):
+        assert is_substring('YoYoYoOo', 'Yo') is True
+        assert is_substring('BluUE', 'UE') is True
+        assert is_substring('    aAa    ', 'aAa') is True
 
     def test_is_palindrome_with_mirrored_strings(self):
         # simple palindromes that are mirrored strings

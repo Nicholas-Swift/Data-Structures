@@ -4,7 +4,7 @@ import string
 
 
 def is_substring(text, substring):
-
+    """Iteratively check whether a given string is a substring iteratively"""
     new_substring = ""
     for i in text:
         new_substring += i
@@ -97,6 +97,4 @@ def main():
 
 
 if __name__ == '__main__':
-    #main()
-
-    print(is_substring("hello", "lll"))
+    main()
