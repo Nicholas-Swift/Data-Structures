@@ -3,6 +3,21 @@
 import string
 
 
+def is_substring(text, substring):
+
+    new_substring = ""
+    for i in text:
+        new_substring += i
+
+        if new_substring == substring:
+            return True
+
+        if len(new_substring) >= len(substring):
+            new_substring = new_substring[1:]
+
+    return False
+
+
 def is_palindrome(text):
     """A string of characters is a palindrome if it reads the same forwards and
     backwards, ignoring punctuation, whitespace, and letter casing"""
@@ -82,4 +97,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    #main()
+
+    print(is_substring("hello", "lll"))
