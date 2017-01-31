@@ -18,6 +18,7 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any"""
         self.head = None
         self.tail = None
+        self.size = 0
         if iterable:
             for item in iterable:
                 self.append(item)
@@ -41,12 +42,15 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes"""
-        node_count = 0
-        current = self.head  # Start at the head node
-        while current is not None:
-            node_count += 1  # Count this node
-            current = current.next  # Skip to the next node
-        return node_count
+        return self.size
+
+    def first(self):
+        """Return first item in linked list"""
+        return self.head.data
+
+    def last(self):
+        """Return last item in linked list"""
+        return self.tail.data
 
     def append(self, item):
         """Insert the given item at the tail of this linked list"""
@@ -59,6 +63,8 @@ class LinkedList(object):
             self.tail.next = new_node
         # Update tail node
         self.tail = new_node
+        # Update length
+        self.size += 1
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list"""
@@ -70,6 +76,8 @@ class LinkedList(object):
         # Check if list was empty
         if self.tail is None:
             self.tail = new_node
+        # Update length
+        self.size += 1
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError"""
@@ -94,6 +102,8 @@ class LinkedList(object):
                 if previous is not None:
                     previous.next = None
                 self.tail = previous
+            # Update length
+            self.size -= 1
         else:
             raise ValueError('Item not found: {}'.format(item))
 

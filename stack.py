@@ -1,11 +1,50 @@
 #!python
+from linkedlist import LinkedList
 
-class Stack(object):
+# """Stack built with array"""
+# class Stack(list):
+
+#     def __init__(self, iterable=None):
+#         """Initialize this stack and push the given items, if any"""
+#         super(Stack, self).__init__()
+#         if iterable:
+#             for item in iterable:
+#                 self.push(item)
+
+#     def __repr__(self):
+#         """Return a string representation of this stack"""
+#         return 'Stack({})'.format(self.length())
+
+#     def is_empty(self):
+#         """Return True if this stack is empty, or False otherwise"""
+#         return len(self) == 0
+
+#     def length(self):
+#         """Return the number of items in this stack"""
+#         return len(self)
+
+#     def peek(self):
+#         """Return the top item on this stack without removing it, or None if this stack is empty"""
+#         return None if self.is_empty() else self[-1] 
+
+#     def push(self, item):
+#         """Push the given item onto this stack"""
+#         self.append(item)
+
+#     def pop(self):
+#         """Return the top item and remove it from this stack, or raise ValueError if this stack is empty"""
+#         if self.is_empty:
+#             raise ValueError
+#         else:
+#             return super(Stack, self).pop()
+
+
+"""Stack built with linked list"""
+class Stack(LinkedList):
 
     def __init__(self, iterable=None):
         """Initialize this stack and push the given items, if any"""
-        # TODO: initialize instance variables
-        pass
+        super(Stack, self).__init__()
         if iterable:
             for item in iterable:
                 self.push(item)
@@ -16,27 +55,26 @@ class Stack(object):
 
     def is_empty(self):
         """Return True if this stack is empty, or False otherwise"""
-        # TODO: check if empty
-        pass
+        return super(Stack, self).is_empty()
 
     def length(self):
         """Return the number of items in this stack"""
-        # TODO: count number of items
-        pass
+        return self.size
 
     def peek(self):
-        """Return the top item on this stack without removing it,
-        or None if this stack is empty"""
-        # TODO: return top item, if any
-        pass
+        """Return the top item on this stack without removing it, or None if this stack is empty"""
+        return None if self.is_empty() else self.first() 
 
     def push(self, item):
         """Push the given item onto this stack"""
-        # TODO: push given item
-        pass
+        self.prepend(item)
 
     def pop(self):
-        """Return the top item and remove it from this stack,
-        or raise ValueError if this stack is empty"""
-        # TODO: pop top item, if any
-        pass
+        """Return the top item and remove it from this stack, or raise ValueError if this stack is empty"""
+        if self.is_empty():
+            raise ValueError
+        else:
+            item = self.first()
+            self.delete(item)
+            return item
+
