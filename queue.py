@@ -63,7 +63,7 @@ class Queue(LinkedList):
 
     def peek(self):
         """Return the next item in this queue without removing it, or None if this queue is empty"""
-        return None if self.is_empty() else self.first()
+        return None if self.is_empty() else self[0]
 
     def enqueue(self, item):
         """Enqueue the given item into this queue"""
@@ -74,6 +74,6 @@ class Queue(LinkedList):
         if self.is_empty():
             raise ValueError
         else:
-            item = self.first()
-            self.delete(item)
+            item = self[0]
+            self.delete_at_index(0)
             return item

@@ -39,6 +39,13 @@ class LinkedListTest(unittest.TestCase):
         ll.append('C')
         assert ll.length() == 3
 
+    def test_getitem(self):
+        ll = LinkedList(['A', 'B', 'C'])
+        assert ll[0] == 'A'
+        assert ll[-1] == 'C'
+        assert ll[-3] == 'A'
+        assert ll[1] == 'B'
+
     def test_append(self):
         ll = LinkedList()
         ll.append('A')

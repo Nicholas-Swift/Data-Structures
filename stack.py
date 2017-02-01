@@ -63,18 +63,18 @@ class Stack(LinkedList):
 
     def peek(self):
         """Return the top item on this stack without removing it, or None if this stack is empty"""
-        return None if self.is_empty() else self.first() 
+        return None if self.is_empty() else self[-1]
 
     def push(self, item):
         """Push the given item onto this stack"""
-        self.prepend(item)
+        self.append(item)
 
     def pop(self):
         """Return the top item and remove it from this stack, or raise ValueError if this stack is empty"""
         if self.is_empty():
             raise ValueError
         else:
-            item = self.first()
-            self.delete(item)
+            item = self[-1]
+            self.delete_at_index(-1)
             return item
 
