@@ -12,8 +12,8 @@ class HashTable(object):
 
         self.buckets = [LinkedList() for i in range(init_size)]
         self.entries = 0
-        self.load = self.entries / len(self.buckets)
-        self.max_load = 0.66
+        self.load = self.entries / float(len(self.buckets))
+        self.max_load = 2/float(3)
 
     def __repr__(self):
         """Return a string representation of this hash table"""
@@ -60,8 +60,8 @@ class HashTable(object):
         new_length = len(self.buckets)*2
 
         # Create new buckets list, recalculate load with new_length
-        new_buckets = [DoublyLinkedList() for i in range(new_length)]
-        self.load = self.entries / new_length
+        new_buckets = [LinkedList() for i in range(new_length)]
+        self.load = self.entries / float(new_length)
 
         # Iterate through current items and add to new buckets
         for item_key, item_value in self.__iter__():
@@ -79,7 +79,7 @@ class HashTable(object):
         new_length = self.entries * 2
 
         # Create new buckets list, recalculate load with new_length
-        new_buckets = [DoublyLinkedList() for i in range(new_length)]
+        new_buckets = [LinkedList() for i in range(new_length)]
         self.load = self.entries / new_length
 
         # Iterate through current items and add to new buckets
@@ -217,7 +217,9 @@ class HashTable(object):
 
         for i, bucket in enumerate(self.buckets):
             if bucket:
-                self.buckets[i] = DoublyLinkedList()
+                self.buckets[i] = LinkedList()
+        self.entries = 0
+        self.load = 0
 
 
 def test_hash_table():

@@ -3,7 +3,7 @@
 from linkedlist import LinkedList
 
 
-class HashTable(object):
+class Set(object):
 
     def __init__(self, init_size=8):
         """Initialize this hash table with the given initial size"""
@@ -13,7 +13,7 @@ class HashTable(object):
         self.buckets = [LinkedList() for i in range(init_size)]
         self.entries = 0
         self.load = self.entries / len(self.buckets)
-        self.max_load = 0.66
+        self.max_load = 2/float(3)
 
     def __repr__(self):
         """Return a string representation of this hash table"""
@@ -27,7 +27,7 @@ class HashTable(object):
         bucket = self._bucket(key)
 
         for item in bucket:
-            if key == item_key:
+            if key == item:
                 return True
         return False
 
@@ -60,13 +60,13 @@ class HashTable(object):
         new_length = len(self.buckets)*2
 
         # Create new buckets list, recalculate load with new_length
-        new_buckets = [DoublyLinkedList() for i in range(new_length)]
-        self.load = self.entries / new_length
+        new_buckets = [LinkedList() for i in range(new_length)]
+        self.load = self.entries / float(new_length)
 
         # Iterate through current items and add to new buckets
         for item in self.__iter__():
-            index = hash(item_key) % new_length
-            new_buckets[index].append((item_key, item_value))
+            index = hash(item) % new_length
+            new_buckets[index].append(item)
 
         self.buckets = new_buckets
         return
@@ -79,13 +79,13 @@ class HashTable(object):
         new_length = self.entries * 2
 
         # Create new buckets list, recalculate load with new_length
-        new_buckets = [DoublyLinkedList() for i in range(new_length)]
-        self.load = self.entries / new_length
+        new_buckets = [LinkedList() for i in range(new_length)]
+        self.load = self.entries / float(new_length)
 
         # Iterate through current items and add to new buckets
-        for item_key, item_value in self.__iter__():
-            index = hash(item_key) % new_length
-            new_buckets[index].append((item_key, item_value))
+        for item in self.__iter__():
+            index = hash(item) % new_length
+            new_buckets[index].append(item)
 
         self.buckets = new_buckets
         return
@@ -129,9 +129,10 @@ class HashTable(object):
         # Worst: Omega(1)
 
         bucket = self._bucket(item)
-        item = bucket.find(lambda x: x[0] == item)
-        if item is None:
+        bucket_item = bucket.find(lambda x: x == item)
+        if bucket_item is None:
             bucket.append(item)
+            self._update_entries(1)
 
     def remove(self, item):
         """Delete the given item from this hash table, or raise KeyError"""
@@ -139,13 +140,22 @@ class HashTable(object):
         # Worst: O(n)
 
         bucket = self._bucket(item)
-        item = bucket.find(lambda x: x[0] == item)
-        if item is not None:
+        bucket_item = bucket.find(lambda x: x == item)
+        if bucket_item is not None:
             bucket.delete(item)
             self._update_entries(-1)
             return
         else:
             raise KeyError('Item is not in HashTable')
+
+    def items(self):
+        """Return a list of all items in this hash table"""
+        # Best: Omega(n) (number of items in hash table)
+        # Worst: O(n)
+        items = []
+        for item in self.__iter__():
+            items.append(item)
+        return items
 
     def shrink():
         """Let user shrink the hash table to fit"""
@@ -162,7 +172,9 @@ class HashTable(object):
 
         for i, bucket in enumerate(self.buckets):
             if bucket:
-                self.buckets[i] = DoublyLinkedList()
+                self.buckets[i] = LinkedList()
+        self.entries = 0
+        self.load = 0
 
 
 def test_hash_table():
