@@ -22,14 +22,9 @@ class Set(object):
     def __contains__(self, key):
         """Does it contain the item"""
         # Best: Omega(1)
-        # Worst: O(n)
+        # Worst: O(n) (number of items in bucket)
 
-        bucket = self._bucket(key)
-
-        for item in bucket:
-            if key == item:
-                return True
-        return False
+        return self.contains(key)
 
     def __iter__(self):
         """Iterate through the hash table"""
