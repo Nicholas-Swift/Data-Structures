@@ -72,6 +72,7 @@ class LinkedListTest(unittest.TestCase):
         bst.delete(20)
         assert bst.root.data == 50
         assert bst.root.left.data == 19
+        assert bst.root.left.left.data == 17
         assert bst.root.left.right.data == 25
         assert bst.search(20) == False
         bst.delete(50)
