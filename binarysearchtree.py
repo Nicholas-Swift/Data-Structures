@@ -118,8 +118,12 @@ class BinarySearchTree(object):
         while current is not None:
             if item == current.data:
                 if item > previous.data:
+                    if current.right:
+                        current.right.left = current.left
                     previous.right = current.right
                 else:
+                    if current.left:
+                        current.left.right = current.right
                     previous.left = current.left
                 self.size -= 1
                 return

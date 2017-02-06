@@ -64,7 +64,7 @@ class LinkedListTest(unittest.TestCase):
         assert bst.root.left.right.data == 7
 
     def test_delete(self):
-        bst = BinarySearchTree([50, 20, 19, 25, 28, 59, 58, 60])
+        bst = BinarySearchTree([50, 20, 19, 25, 17, 18, 28, 59, 58, 60])
         bst.delete(60)
         assert bst.root.data == 50
         assert bst.root.right.right == None
@@ -77,7 +77,10 @@ class LinkedListTest(unittest.TestCase):
         bst.delete(50)
         assert bst.root.data == 28
         assert bst.root.right.data == 59
-        assert bst.root.left.data == 25
+        assert bst.root.left.data == 19
+        assert bst.root.left.right.data == 25
+        assert bst.root.left.left.data == 17
+        assert bst.root.left.left.right.data == 18
         assert bst.search(50) == False
 
 
