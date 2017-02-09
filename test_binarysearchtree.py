@@ -64,25 +64,56 @@ class LinkedListTest(unittest.TestCase):
         assert bst.root.left.right.data == 7
 
     def test_delete(self):
-        bst = BinarySearchTree([50, 20, 19, 25, 17, 18, 28, 59, 58, 60])
-        bst.delete(60)
-        assert bst.root.data == 50
+        bst = BinarySearchTree([10, 5, 1, 8, 15, 11, 18])
+
+        bst.delete(18)
+        assert bst.root.data == 10
+        assert bst.root.left.data == 5
+        assert bst.root.left.left.data == 1
+        assert bst.root.left.right.data == 8
+        assert bst.root.right.data == 15
+        assert bst.root.right.left.data == 11
         assert bst.root.right.right == None
-        assert bst.search(60) == False
-        bst.delete(20)
-        assert bst.root.data == 50
-        assert bst.root.left.data == 19
-        assert bst.root.left.left.data == 17
-        assert bst.root.left.right.data == 25
-        assert bst.search(20) == False
-        bst.delete(50)
-        assert bst.root.data == 28
-        assert bst.root.right.data == 59
-        assert bst.root.left.data == 19
-        assert bst.root.left.right.data == 25
-        assert bst.root.left.left.data == 17
-        assert bst.root.left.left.right.data == 18
-        assert bst.search(50) == False
+        assert bst.search(18) == False
+
+        bst = BinarySearchTree([10, 5, 1, 8, 15, 11, 18])
+        bst.delete(15)
+        assert bst.root.data == 10
+        assert bst.root.left.data == 5
+        assert bst.root.left.left.data == 1
+        assert bst.root.left.right.data == 8
+        assert bst.root.right.data == 11
+        assert bst.root.right.right.data == 18
+        assert bst.root.right.left == None
+        assert bst.search(15) == False
+
+        bst = BinarySearchTree([10, 5, 1, 8, 15, 11, 18])
+        bst.delete(10)
+        assert bst.root.data == 8
+        assert bst.root.left.data == 5
+        assert bst.root.left.left.data == 1
+        assert bst.root.left.right == None
+        assert bst.root.right.data == 15
+        assert bst.root.right.right.data == 18
+        assert bst.root.right.left.data == 11
+
+    def test_in_order_traversal(self):
+        bst = BinarySearchTree([10, 20, 15, 25, 23, 22, 30])
+        assert bst.in_order_traversal() == [10, 15, 20, 22, 23, 25, 30]
+        bst = BinarySearchTree([10,50,5,9,1,3,2])
+        assert bst.in_order_traversal() == [1,2,3,5,9,10,50]
+
+    def test_pre_order_traversal(self):
+        bst = BinarySearchTree([10, 20, 15, 25, 23, 22, 30])
+        assert bst.pre_order_traversal() == [10, 20, 15, 25, 23, 22, 30]
+        bst = BinarySearchTree([10,50,5,9,1,3,2])
+        assert bst.pre_order_traversal() == [10,5,1,3,2,9,50]
+
+    def test_post_order_traversal(self):
+        bst = BinarySearchTree([10, 20, 15, 25, 23, 22, 30])
+        assert bst.post_order_traversal() == [15, 22, 23, 30, 25, 20, 10]
+        bst = BinarySearchTree([10,50,5,9,1,3,2])
+        assert bst.post_order_traversal() == [2,3,1,9,5,50,10]
 
 
 if __name__ == '__main__':

@@ -1,19 +1,8 @@
 # #!python
 
-class Node(object):
+from binarysearchtree import BinarySearchTree
 
-    def __init__(self, data):
-        """Initialize this node with the given data"""
-        self.data = data
-        self.left = None
-        self.right = None
-
-    def __repr__(self):
-        """Return a string representation of this node"""
-        return 'Node({})'.format(repr(self.data))
-
-
-class BinarySearchTree(object):
+class Map(BinarySearchTree):
 
     def __init__(self, iterable=None):
         """Initialize this binary search tree and insert the given items if any"""
