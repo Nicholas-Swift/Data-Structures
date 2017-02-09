@@ -31,6 +31,9 @@ class BinarySearchTree(object):
         """Return True if this binary search tree contains no nodes"""
         return self.length() == 0
 
+    def find(self):
+        pass
+
     def search(self, item):
         """Search through the binary search"""
         current = self.root
