@@ -2,15 +2,44 @@
 
 class Node(object):
 
-    def __init__(self, data):
+    def __init__(self, first_data, second_data=None):
         """Initialize this node with the given data"""
-        self.data = data
+        self.first_data = first_data
+        self.second_data = second_data
         self.left = None
+        self.middle = None
         self.right = None
 
     def __repr__(self):
         """Return a string representation of this node"""
         return 'Node({})'.format(repr(self.data))
+
+    def insert(self, item):
+        """Insert an item into the node"""
+
+        # Same item, value error
+        if item == self.first_data or item == self.second_data:
+            assert ValueError("Item already exists in the binary search tree")
+
+        # First data is None, add the item and return
+        if self.first_data is None:
+            self.first_data = item
+            return
+
+        # Second data is None, add the item to correct order
+        if self.second_data is None:
+            self.first_data, self.second_data = (self.first_data, item) if item > self.first_data else (item, self.first_data)
+            return
+
+        # Both are full, pop something!
+        if item > self.second_data:
+            popped_node = self.second_data
+            self.second_data = item
+            return popped_node
+        else:
+            popped_node = self.first_data
+            self.first_data = item
+            return popped_node
 
 
 class BinarySearchTree(object):
@@ -35,9 +64,11 @@ class BinarySearchTree(object):
         """Search through the binary search"""
         current = self.root
         while current is not None:
-            if item == current.data:
+            if item == current.first_data or item == current.second_data:
                 return True
-            if item > current.data:
+            if item > current.first_data and item < current.second_data:
+                current = current.middle
+            elif item > current.second_data:
                 current = current.right
             else:
                 current = current.left
@@ -45,114 +76,39 @@ class BinarySearchTree(object):
 
     def insert(self, item):
         """Insert a new item into the binary search tree, or assert ValueError if item already exists"""
+
+        # Set to root
         if self.root is None:
             self.root = Node(item)
-            self.size += 1
             return
 
-        previous = self.root
         current = self.root
-        while current is not None:
-            if item == current.data:
-                assert ValueError("Can not add the same item to a binary search tree")
-            if item > current.data:
-                previous = current
-                current = current.right
+        insert_item = self.insert_helper(item, current)
+
+        if insert_item:
+
+            old_root = current
+
+            self.root = Node(insert_item)
+
+            if old_root.left is None:
+                self.root.left = Node(old_root.first_data)
+                self.root.right = Node(old_root.second_data)
             else:
-                previous = current
-                current = current.left
-        if item > previous.data:
-            previous.right = Node(item)
-        else:
-            previous.left = Node(item)
-        self.size += 1
+                self.root.left = old_root.left
+                self.root.right = old_root.right
 
-    def _leftmost_node_and_previous(self, start_node):
-        """Find the leftmost node in the subtree"""
-        previous = start_node
-        current = start_node
-        while current.left is not None:
-            previous = current
-            current = current.left
-        return (current, previous)
+    def insert_helper(self, item, current):
 
-    def _rightmost_node_and_previous(self, start_node):
-        """Find the rightmost node in the subtree"""
-        previous = start_node
-        current = start_node
-        while current.right is not None:
-            previous = current
-            current = current.right
-        return (current, previous)
+        if item > current.first_data and item < current.second_data and current.middle is not None:
+            self.insert_helper(item, current.middle)
+        elif item > current.second_data and current.right is not None:
+            self.insert_helper(item, current.right)
+        elif item < current.first_data and current.left is not None:
+            self.insert_helper(item, current.left)
 
-    def _reassign_root(self, new_node):
-        new_node.right = self.root.right
-        new_node.left = self.root.left
-        self.root = new_node
+        return current.insert(item)
 
-    def delete(self, item):
-        """Delete an item from the binary search tree, or assert ValueError if item does not exit"""
-
-        if self.root is None:
-            assert ValueError("Can not delete from an empty binary search tree")
-
-        # Find the node to delete and it's previous node
-        previous = self.root
-        current = self.root
-        while current is not None:
-            if item == current.data:
-                break
-            elif item > current.data:
-                previous = current
-                current = current.right
-            else:
-                previous = current
-                current = current.left
-
-        # Assert ValueError if the node was not found
-        if current is None:
-            assert ValueError("Item does not exist in the binary search tree")
-
-        # Delete the item
-        if current.left is not None:
-            rightmost, rightmost_parent = self._rightmost_node_and_previous(current.left)
-            rightmost_parent.right = rightmost.left
-
-            if current == self.root:
-                self._reassign_root(rightmost)
-                self.size += 1
-                return
-
-            rightmost.right = current.right
-            if current.data > previous.data:
-                previous.right = rightmost
-            else:
-                previous.left = rightmost
-
-        elif current.right is not None:
-            leftmost, leftmost_parent = self._leftmost_node_and_previous(current.right)
-            leftmost_parent.left = leftmost.right
-
-            if current == self.root:
-                self._reassign_root(leftmost)
-                self.size += 1
-                return
-
-            leftmost.left = current.left
-            if current.data > previous.data:
-                previous.right = leftmost
-            else:
-                previous.left = leftmost
-
-        else:
-            if current.data == previous.data: # self.root
-                self.root = None
-            elif current.data > previous.data:
-                previous.right = None
-            else:
-                previous.left = None
-
-        self.size -= 1
 
     def in_order_traversal(self, current_node=None, return_list=None):
         """Perform an in-order traversal on the binary search tree and return a list of nodes"""
@@ -222,8 +178,12 @@ class BinarySearchTree(object):
 
 
 def main():
-    bst = BinarySearchTree([5, 1, 6, 8, 9, 2, 11])
-    print(bst.in_order_traversal())
+    bst = BinarySearchTree()
+    bst.insert(1)
+    bst.insert(2)
+    bst.insert(3)
+    bst.insert(4)
+    print(bst.root.right.second_data)
 
 
 if __name__ == '__main__':
