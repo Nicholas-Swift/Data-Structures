@@ -107,53 +107,111 @@
 [visualgo hash table]: https://visualgo.net/hashtable
 
 
-### Class 6: Friday, February 3 – Trees & Traversals
+### Class 6: Friday, February 3 – Trees
 
 **Topics:**
-- [tree], [binary search tree], [n-ary tree], operations
-- [tree traversal]: pre-order, post-order, in-order, level-order
-- watch Make School's video lectures: [tree][ms video tree], [tree traversal][ms video tree traversal]
+- [tree], [binary search tree], operations
+- watch Make School's video lecture: [tree][ms video tree]
 - play with interactive visualizations: [binary search tree][visualgo bst]
 
 **Challenges:**
 - implement binary search tree with node objects
 - implement search, insert, delete binary search tree operations
-- implement iterative and recursive binary search tree traversals
-- implement map (dictionary) with binary search tree
 - annotate functions with complexity analysis
 - stretch: implement binary search tree with singly linked list
-- stretch: implement n-ary search tree with dynamic array
+
+**Project:**
+- [trees and mazes] tutorial on Make School's [Online Academy]
 
 [tree]: https://en.wikipedia.org/wiki/Tree_%28data_structure%29
 [binary search tree]: https://en.wikipedia.org/wiki/Binary_search_tree
-[n-ary tree]: https://en.wikipedia.org/wiki/K-ary_tree
-[tree traversal]: https://en.wikipedia.org/wiki/Tree_traversal
 [ms video tree]: https://www.youtube.com/watch?v=Yr3y78d2KYI
-[ms video tree traversal]: https://www.youtube.com/watch?v=Qd8dKFaRu9I
 [visualgo bst]: https://visualgo.net/bst
 
+[trees and mazes]: http://make.sc/oa-trees-and-mazes
+[Online Academy]: https://www.makeschool.com/academy
 
-### Class 7: Monday, February 6 – Trie & Self-Balancing Trees
+
+### Class 7: Monday, February 6 – Tree Traversals & Self-Balancing Trees
 
 **Topics:**
-- [trie (prefix/radix tree)][trie]
-- [self-balancing trees] with rotations: [AVL tree], [splay tree], [red-black tree]
+- [tree traversals]: pre-order, post-order, in-order, level-order
+- watch Make School's video lecture: [tree traversals][ms video tree traversals]
+- [self-balancing trees] with [rotations]: [AVL tree], [splay tree], [red-black tree]
 
 **Challenges:**
-- implement trie with insert and prefix search operations
+- implement iterative and recursive binary search tree traversals
+- implement map (dictionary) with binary search tree
 - annotate functions with complexity analysis
 - stretch: implement AVL tree or splay tree with insert and search operations
 
-**Project:**
-- [phone call routing] – revisit with trie
-- annotate functions with complexity analysis
-
-[trie]: https://en.wikipedia.org/wiki/Trie
+[tree traversals]: https://en.wikipedia.org/wiki/Tree_traversal
+[ms video tree traversals]: https://www.youtube.com/watch?v=Qd8dKFaRu9I
 [self-balancing trees]: https://en.wikipedia.org/wiki/Self-balancing_binary_search_tree
+[rotations]: https://en.wikipedia.org/wiki/Tree_rotation
 [AVL tree]: https://en.wikipedia.org/wiki/AVL_tree
 [splay tree]: https://en.wikipedia.org/wiki/Splay_tree
 [red-black tree]: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
-[phone call routing]: https://www.dropbox.com/sh/tj6ppp6uwf12cce/AADje96PJhfsIXJEtP1OjwjFa
+
+
+### Class 8: Wednesday, February 8 – More Self-Balancing Trees
+
+**Topics:**
+- [n-ary tree]
+- [self-balancing trees] with multiple keys: [2-3 tree], [B-tree]
+- [space-partitioning] trees: [quadtree], [octree], [k-d tree]
+
+**Challenges:**
+- implement 2-3 tree with insert and search operations
+- annotate functions with complexity analysis
+- stretch: implement n-ary search tree using dynamic array of siblings
+- stretch: implement B-tree or k-d tree with insert and search operations
+
+[n-ary tree]: https://en.wikipedia.org/wiki/K-ary_tree
+[2-3 tree]: https://en.wikipedia.org/wiki/2%E2%80%933_tree
+[B-tree]: https://en.wikipedia.org/wiki/B-tree
+[space-partitioning]: https://en.wikipedia.org/wiki/Space_partitioning
+[quadtree]: https://en.wikipedia.org/wiki/Quadtree
+[octree]: https://en.wikipedia.org/wiki/Octree
+[k-d tree]: https://en.wikipedia.org/wiki/K-d_tree
+
+
+### Class 9: Friday, February 10 – Iterative Sorting Algorithms
+
+**Topics:**
+- iterative [comparison sorting]: [bubble], [selection], [insertion]
+- [integer sorting]: [counting], [bucket], [radix]
+- watch [animations] and [this video] of sorting algorithms to see patterns
+- play with step-by-step [interactive animations] of sorting algorithms
+
+**Challenges:**
+- implement bubble, selection, and insertion sorts
+- implement counting and bucket sorts
+- annotate functions with complexity analysis
+- stretch: implement insertion sort using binary search
+- stretch: implement radix, [cocktail shaker], or [Shell] sort
+
+**Project:**
+- [sorting algorithms] with real-world data on Make School's [Online Academy]
+
+[comparison sorting]: https://en.wikipedia.org/wiki/Comparison_sort
+[bubble]: https://en.wikipedia.org/wiki/Bubble_sort
+[selection]: https://en.wikipedia.org/wiki/Selection_sort
+[insertion]: https://en.wikipedia.org/wiki/Insertion_sort
+
+[integer sorting]: https://en.wikipedia.org/wiki/Integer_sorting
+[counting]: https://en.wikipedia.org/wiki/Counting_sort
+[bucket]: https://en.wikipedia.org/wiki/Bucket_sort
+[radix]: https://en.wikipedia.org/wiki/Radix_sort
+[cocktail shaker]: https://en.wikipedia.org/wiki/Cocktail_shaker_sort
+[Shell]: https://en.wikipedia.org/wiki/Shellsort
+
+[animations]: https://www.toptal.com/developers/sorting-algorithms/
+[interactive animations]: https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+[this video]: https://www.youtube.com/watch?v=jHPexHsDxwQ
+
+[sorting algorithms]: http://make.sc/oa-sorting-algorithms
+
 
 ## Working with this GitHub repository
 
