@@ -12,7 +12,8 @@ class Node(object):
 
     def __repr__(self):
         """Return a string representation of this node"""
-        return 'Node({})'.format(repr(self.data))
+        return 'Node({}, {})'.format(repr(self.first_data), repr(self.second_data))
+        # return 'Node({})'.format(repr(self.data))
 
     def insert(self, item):
         """Insert an item into the node"""
@@ -33,13 +34,13 @@ class Node(object):
 
         # Both are full, pop something!
         if item > self.second_data:
-            popped_node = self.second_data
+            popped_data = self.second_data
             self.second_data = item
-            return popped_node
+            return popped_data
         else:
-            popped_node = self.first_data
+            popped_data = self.first_data
             self.first_data = item
-            return popped_node
+            return popped_data
 
 
 class BinarySearchTree(object):
@@ -61,7 +62,7 @@ class BinarySearchTree(object):
         return self.length() == 0
 
     def search(self, item):
-        """Search through the binary search"""
+        """Search through the binary search tree"""
         current = self.root
         while current is not None:
             if item == current.first_data or item == current.second_data:
@@ -85,10 +86,9 @@ class BinarySearchTree(object):
         current = self.root
         insert_item = self.insert_helper(item, current)
 
+        # Create new root
         if insert_item:
-
             old_root = current
-
             self.root = Node(insert_item)
 
             if old_root.left is None:
@@ -183,7 +183,13 @@ def main():
     bst.insert(2)
     bst.insert(3)
     bst.insert(4)
-    print(bst.root.right.second_data)
+    bst.insert(5)
+
+    print('\n')
+    print(bst.root)
+    print(bst.root.right)
+    print(bst.root.left)
+    print('\n')
 
 
 if __name__ == '__main__':
