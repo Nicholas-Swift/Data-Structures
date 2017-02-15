@@ -114,44 +114,31 @@ def merge(arr1, arr2):
 
     new_arr = []
 
-    while arr1 or arr2:
-
-        if not arr1:
-            new_arr.extend(arr2)
-            break
-        elif not arr2:
-            new_arr.extend(arr1)
-            break
-
+    # Compare and add
+    while arr1 and arr2:
         if arr1[0] < arr2[0]:
             new_arr.append(arr1.pop(0))
         else:
             new_arr.append(arr2.pop(0))
 
+    # Add rest of elements
+    if arr1:
+        new_arr.extend(arr1)
+    if arr2:
+        new_arr.extend(arr2)
+
+    # Return
     return new_arr
 
-def merge_sort(arr, left=None, right=None):
+def merge_sort(arr):
 
-    # Setup
-    if left is None or right is None:
-        left = arr[:len(arr)//2]
-        right = arr[len(arr)//2:]
+    if len(arr) <= 1:
+        return arr
 
-    if len(left) > 1:
-        merge_sort(arr, arr[:len(arr)//2], arr[len(arr)//2:])
+    num = len(arr)//2
+    new_list = merge(merge_sort(arr[:num]), merge_sort(arr[num:]))
 
-
-    print("left {}".format(left))
-    print("right {}".format(right))
-
-
-
-    left = arr[:len(arr)//2]
-    right = arr[len(arr)//2:]
-
-    merge_sort(arr, left, right)
-
-    return merge(left, right)
+    return new_list
 
 def tree_sort(arr):
 
@@ -161,9 +148,10 @@ def tree_sort(arr):
         arr[i] = bst_list[i]
 
 def main():
+
     arr = [58, 25, 3, 7, 4, 9, 4, 3, 6]
-    tree_sort(arr)
-    print(arr)
+    print(merge_sort(arr))
+    # print(arr)
 
 if __name__ == '__main__':
     main()
