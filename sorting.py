@@ -1,5 +1,7 @@
 # #!python
 
+from binarysearchtree import BinarySearchTree
+
 def swap(arr, first_index, second_index):
     arr[first_index], arr[second_index] = arr[second_index], arr[first_index]
 
@@ -74,15 +76,94 @@ def counting_sort(arr):
 
 def bucket_sort(arr):
 
-    buckets = [] * len(arr)
-    pass
+    # Find min and max
+    min_num = None
+    max_num = None
+    for num in arr:
+        if num < min_num or min_num is None:
+            min_num = num
+        if num > max_num or max_num is None:
+            max_num = num
 
+    # Create buckets
+    place = len(str(max_num))
+    num_of_buckets = int(str(max_num)[0]) + 1
+
+    buckets = [[] for _ in range(num_of_buckets)]
+    
+    # Add to buckets
+    for num in arr:
+        if len(str(num)) == len(str(max_num)):
+            bucket_num = int(str(num)[::-1][place-1])
+            buckets[bucket_num].append(num)
+        else:
+            buckets[0].append(num)
+
+    # Sort all buckets
+    for bucket in buckets:
+        bubble_sort(bucket)
+
+    # Overwrite array
+    index = 0
+    for bucket in buckets:
+        for item in bucket:
+            arr[index] = item
+            index += 1
+
+def merge(arr1, arr2):
+
+    new_arr = []
+
+    while arr1 or arr2:
+
+        if not arr1:
+            new_arr.extend(arr2)
+            break
+        elif not arr2:
+            new_arr.extend(arr1)
+            break
+
+        if arr1[0] < arr2[0]:
+            new_arr.append(arr1.pop(0))
+        else:
+            new_arr.append(arr2.pop(0))
+
+    return new_arr
+
+def merge_sort(arr, left=None, right=None):
+
+    # Setup
+    if left is None or right is None:
+        left = arr[:len(arr)//2]
+        right = arr[len(arr)//2:]
+
+    if len(left) > 1:
+        merge_sort(arr, arr[:len(arr)//2], arr[len(arr)//2:])
+
+
+    print("left {}".format(left))
+    print("right {}".format(right))
+
+
+
+    left = arr[:len(arr)//2]
+    right = arr[len(arr)//2:]
+
+    merge_sort(arr, left, right)
+
+    return merge(left, right)
+
+def tree_sort(arr):
+
+    bst = BinarySearchTree(arr)
+    bst_list = bst.in_order_traversal()
+    for i in range(len(arr)):
+        arr[i] = bst_list[i]
 
 def main():
-    arr = [18, 5, 3, 7, 4, 9, 4, 3, 6]
-    counting_sort(arr)
+    arr = [58, 25, 3, 7, 4, 9, 4, 3, 6]
+    tree_sort(arr)
     print(arr)
-
 
 if __name__ == '__main__':
     main()
