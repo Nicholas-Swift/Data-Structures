@@ -147,6 +147,31 @@ def tree_sort(arr):
     for i in range(len(arr)):
         arr[i] = bst_list[i]
 
+def quick_sort(arr):
+    pivot = arr[-1]
+
+def partition(arr, low, high):
+
+    # Set up pivot
+    pivot = arr[low]
+    left = low - 1
+    right = low + 1
+
+    while True:
+        while arr[left] < pivot:
+            left = left + 1
+
+        while arr[right] > pivot:
+            right = right - 1
+
+        if left >= right:
+            break
+        else:
+            swap(arr, left, right)
+
+    
+
+
 def main():
 
     arr = [58, 25, 3, 7, 4, 9, 4, 3, 6]
