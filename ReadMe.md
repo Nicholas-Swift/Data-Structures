@@ -57,6 +57,8 @@
 - compare [abstract data types][adt] and [concrete data structures][ds]
 - abstract data types: [list], [stack], [queue], [deque]
 - concrete data structures: [array], [dynamic array (resizable array, vector)][dynamic array], [linked list]
+
+**Resources:**
 - watch Make School's video lectures: [linked list][ms video linked list], [stack and queue][ms video stack queue]
 - play with interactive visualizations: [linked list, stack, queue, deque][visualgo list]
 
@@ -81,14 +83,16 @@
 [visualgo list]: https://visualgo.net/list
 
 
-### Class 5: Wednesday, February 1 – Set, Map, & Hash Table
+### Class 5: Wednesday, February 1 – Set, Map & Hash Table
 
 **Topics:**
 - abstract data types: [set], [multiset (bag)][multiset], [map (dictionary, associative array)][map]
 - concrete data structures: [hash table]
+- bonus abstract data type: [circular buffer]
+
+**Resources:**
 - watch Make School's video lecture: [hash table][ms video hash table]
 - play with interactive visualizations: [hash table][visualgo hash table]
-- bonus abstract data type: [circular buffer]
 
 **Challenges:**
 - implement set with hash table
@@ -111,6 +115,8 @@
 
 **Topics:**
 - [tree], [binary search tree], operations
+
+**Resources:**
 - watch Make School's video lecture: [tree][ms video tree]
 - play with interactive visualizations: [binary search tree][visualgo bst]
 
@@ -136,8 +142,10 @@
 
 **Topics:**
 - [tree traversals]: pre-order, post-order, in-order, level-order
-- watch Make School's video lecture: [tree traversals][ms video tree traversals]
 - [self-balancing trees] with [rotations]: [AVL tree], [splay tree], [red-black tree]
+
+**Resources:**
+- watch Make School's video lecture: [tree traversals][ms video tree traversals]
 
 **Challenges:**
 - implement iterative and recursive binary search tree traversals
@@ -181,6 +189,8 @@
 **Topics:**
 - iterative [comparison sorting]: [bubble], [selection], [insertion]
 - [integer sorting]: [counting], [bucket], [radix]
+
+**Resources:**
 - watch [animations] and [this video] of sorting algorithms to see patterns
 - play with step-by-step [interactive animations] of sorting algorithms
 
@@ -236,6 +246,63 @@
 [merge sort]: https://en.wikipedia.org/wiki/Merge_sort
 [tree sort]: https://en.wikipedia.org/wiki/Tree_sort
 [search tree]: https://en.wikipedia.org/wiki/Search_tree
+
+
+### Class 11: Wednesday, February 15 – Recursive Sorting Algorithms
+
+**Topics:**
+- [recursive algorithm analysis] with trees, [recurrence relations], [master theorem]
+- partition algorithm and [quick sort]
+- [stable sorting] and [adaptive sorting]
+
+**Resources:**
+- watch these cute robot video animations: [quick sort][video quick sort], [merge sort vs. quick sort][video merge quick sort]
+
+**Challenges:**
+- implement stable quick sort with a separate partition algorithm
+- annotate functions with complexity analysis
+
+[recursive algorithm analysis]: AlgorithmAnalysisRecursive.pdf
+[recurrence relations]: https://en.wikipedia.org/wiki/Recurrence_relation
+[master theorem]: https://en.wikipedia.org/wiki/Master_theorem
+[quick sort]: https://en.wikipedia.org/wiki/Quicksort
+[stable sorting]: https://en.wikipedia.org/wiki/Sorting_algorithm#Stability
+[adaptive sorting]: https://en.wikipedia.org/wiki/Adaptive_sort
+[video quick sort]: https://www.youtube.com/watch?v=aXXWXz5rF64
+[video merge quick sort]: https://www.youtube.com/watch?v=es2T6KY45cA
+
+
+### Class 12: Friday, February 17 – Priority Queue & Heap
+
+**Topics:**
+- [priority queue] abstract data type
+- [heap] data structure, [binary heap] representations
+- [heap sort], compare to [insertion] and [selection] sort
+
+**Resources:**
+- watch Make School's video lecture: [heap][ms video heap]
+- watch this cute robot video animation: [heap and heap sort][video heap sort]
+- play with interactive visualizations: [heap][visualgo heap]
+- read about [sorting algorithms implemented with priority queue][priority queue sorting]
+
+**Challenges:**
+- implement binary min heap with dynamic array using [starter code](heap.py) and [unit tests](test_heap.py)
+- implement heap sort with binary heap
+- implement priority queue with binary heap
+- implement priority queue with binary search tree
+- annotate functions with complexity analysis
+- stretch: implement stack with priority queue
+- stretch: generalize binary heap with min or max initialization option
+
+[priority queue]: https://en.wikipedia.org/wiki/Priority_queue
+[heap]: https://en.wikipedia.org/wiki/Heap_(data_structure)
+[binary heap]: https://en.wikipedia.org/wiki/Binary_heap
+[heap sort]: https://en.wikipedia.org/wiki/Heapsort
+
+[ms video heap]: https://www.youtube.com/watch?v=eBGgEEXnbuk
+[video heap sort]: https://www.youtube.com/watch?v=H5kAcmGOn4Q
+[visualgo heap]: https://visualgo.net/heap
+[priority queue sorting]: https://en.wikipedia.org/wiki/Priority_queue#Equivalence_of_priority_queues_and_sorting_algorithms
 
 
 ## Working with this GitHub repository
