@@ -1,6 +1,7 @@
 # #!python
 
 from binarysearchtree import BinarySearchTree
+from heap import MinHeap
 
 def swap(arr, first_index, second_index):
     arr[first_index], arr[second_index] = arr[second_index], arr[first_index]
@@ -147,36 +148,43 @@ def tree_sort(arr):
     for i in range(len(arr)):
         arr[i] = bst_list[i]
 
-def quick_sort(arr):
+# def quick_sort(arr):
 
-    # Return same arr
-    if len(arr) <= 1:
-        return arr
+#     # Return same arr
+#     if len(arr) <= 1:
+#         return arr
 
-    for i in range(1, len(arr) - 1):
+#     for i in range(1, len(arr) - 1):
 
 
-def partition(arr, left, right):
+# def partition(arr, left, right):
 
-    # Set up pivot
-    pivot = ((right - left) // 2) + left
+#     # Set up pivot
+#     pivot = ((right - left) // 2) + left
 
-    while arr[left] < pivot:
-        left = left + 1
-        if left > right:
-            swap(arr, left, right)
+#     while arr[left] < pivot:
+#         left = left + 1
+#         if left > right:
+#             swap(arr, left, right)
 
-    while arr[right] > pivot:
-        right = right - 1
-        if left > right:
-            swap(arr: left, right)
+#     while arr[right] > pivot:
+#         right = right - 1
+#         if left > right:
+#             swap(arr: left, right)
+
+def heap_sort(arr):
+    minheap = MinHeap()
+    for item in arr:
+        minheap.insert(item)
+    for i in range(0, len(arr)):
+        arr[i] = minheap.remove_min()
 
 
 def main():
 
     arr = [58, 25, 3, 7, 4, 9, 4, 3, 6]
-    print(merge_sort(arr))
-    # print(arr)
+    heap_sort(arr)
+    print(arr)
 
 if __name__ == '__main__':
     main()
