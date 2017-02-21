@@ -26,6 +26,9 @@ class MinHeap(object):
         """Return the minimum item at the root of the heap"""
         if self.size() < 1:
             raise ValueError('Heap is empty and has no minimum item')
+
+        # print(self.items)
+
         return self.items[0]
 
     def pop(self):
@@ -35,16 +38,21 @@ class MinHeap(object):
         """Remove and return the minimum item at the root of the heap"""
         if self.size() < 1:
             raise ValueError('Heap is empty and has no minimum item')
+
         if self.size() == 1:
             # Remove and return the only item
             return self.items.pop()
+
         assert self.size() > 1
         min_item = self.items[0]
+
         # Move the last item to the root and bubble down to the leaves
         last_item = self.items.pop()
         self.items[0] = last_item
+
         if self.size() > 1:
             self._bubble_down(0)
+
         return min_item
 
     def push_pop(self, item):
@@ -54,11 +62,14 @@ class MinHeap(object):
         """Remove and return the minimum and insert a new item into the heap"""
         if self.size() < 1:
             raise ValueError('Heap is empty and has no minimum item')
+
         min_item = self.items[0]
+
         # Replace the root and bubble down to the leaves
         self.items[0] = item
         if self.size() > 1:
             self._bubble_down(0)
+
         return min_item
 
     def push(self, item):
@@ -74,36 +85,54 @@ class MinHeap(object):
     def _bubble_up(self, index):
         """Ensure the heap-ordering property is true above the given index,
         swapping out of order items, or until the root node is reached"""
+
         if index == 0:
             return  # This index is the root node
+
         if not (0 <= index <= self._last_index()):
             raise IndexError('Invalid index: {}'.format(index))
+
         item = self.items[index]
-        # TODO: Swap this item with parent item if values are out of order
+
+        # Swap this item with parent item if values are out of order
         parent_index = self._parent_index(index)
         parent_item = self.items[parent_index]
-        # ...
-        # TODO: Then bubble up again if necessary
-        # ...
+        if item < parent_item:
+            self.items[index], self.items[parent_index] = parent_item, item
+
+            # Then bubble up again if necessary
+            self._bubble_up(parent_index)
 
     def _bubble_down(self, index):
         """Ensure the heap-ordering property is true below the given index,
         swapping out of order items, or until a leaf node is reached"""
+
         if not (0 <= index <= self._last_index()):
             raise IndexError('Invalid index: {}'.format(index))
+
         left_index = self._left_child_index(index)
         right_index = self._right_child_index(index)
         if left_index > self._last_index():
             return  # This index is a leaf node (does not have any children)
+
         item = self.items[index]
-        # TODO: Determine which child item to compare this node's item to
-        child_index = 0
-        # ...
-        # TODO: Swap this item with a child item if values are out of order
+
+        # Determine which child item to compare this node's item to
+        if left_index > self.size() - 1:
+            return
+        elif right_index > self.size() - 1:
+            child_index = left_index
+        else:
+            child_index = left_index if self.items[left_index] < self.items[right_index] else right_index
+
+        # Swap this item with a child item if values are out of order
         child_item = self.items[child_index]
-        # ...
-        # TODO: Then bubble down again if necessary
-        # ...
+
+        if item > child_item:
+            self.items[index], self.items[child_index] = child_item, item
+
+            # Then bubble down again if necessary
+            self._bubble_down(child_index)
 
     def _last_index(self):
         """Return the last valid index in the underlying array of items"""
