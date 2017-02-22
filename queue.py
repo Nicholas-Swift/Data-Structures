@@ -98,11 +98,12 @@ class Queue(LinkedList):
 
 #     def peek(self):
 #         """Return the next item in this queue without removing it, or None if this queue is empty"""
-#         try:
-#             item = super(PriorityQueue, self).peek()
-#             return item[1] # Return the item, not the priority
-#         except:
+#         item = super(PriorityQueue, self).peek()
+#         if item is None:
 #             return None
+#         else:
+#             assert len(item) == 2
+#             return item[1]
 
 #     def enqueue(self, item, priority):
 #         """Enqueue the given item into this queue"""
@@ -112,8 +113,9 @@ class Queue(LinkedList):
 #         """Return the next item and remove it from this queue, or raise ValueError if this queue is empty"""
 #         if self.is_empty():
 #             raise ValueError
-#         else:
+#         else:c
 #             item = self.remove_min()
+#             assert len(item) == 2
 #             return item[1] # Return the item, not the priority
 
 
@@ -134,9 +136,11 @@ class PriorityQueue(BinarySearchTree):
 
     def peek(self):
         """Return the next item in this queue without removing it, or None if this queue is empty"""
-        if self.is_empty():
+        item = self.find_smallest()
+        if item is None:
             return None
-        return self.find_smallest().data[1]
+        else:
+            return item[1]
 
     def enqueue(self, item, priority):
         """Enqueue the given item into this queue"""
@@ -147,4 +151,4 @@ class PriorityQueue(BinarySearchTree):
         if self.is_empty():
             raise ValueError
         else:
-            return self.delete_smallest().data[1]
+            return self.delete_smallest()[1]

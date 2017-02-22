@@ -162,7 +162,7 @@ class BinarySearchTree(object):
         while current.left is not None:
             current = current.left
 
-        return current
+        return current.data
 
     def delete_smallest(self):
 
@@ -173,17 +173,19 @@ class BinarySearchTree(object):
         previous = self.root
         current = self.root
         while current.left is not None:
+            previous = current
             current = current.left
 
         if current == self.root:
-            item = current
-            self.root = None
+            item = self.root.data
+            self.root = current.right
             self.size -= 1
             return item
 
-        previous.left = None
+        previous.left = current.left
+        previous.right = current.right
         self.size -= 1
-        return current
+        return current.data
 
     def in_order_traversal(self, current_node=None, return_list=None):
         """Perform an in-order traversal on the binary search tree and return a list of nodes"""
