@@ -46,7 +46,7 @@ class StackTest(unittest.TestCase):
         s = Stack()
         s.push('A')
         assert s.peek() == 'A'
-        assert s.length() == 1
+        assert s.length() == 1g
         s.push('B')
         assert s.peek() == 'B'
         assert s.length() == 2
