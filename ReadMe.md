@@ -313,15 +313,13 @@
 - [graph types]: [directed]/undirected, weighted/unweighted, simple/[multigraph]
 - [graph applications]: computer networking, social networking, airplane flight routing, map routing, search engines ([PageRank]), dependency planning, etc.
 - [graph representations]: object references, edge list, [incidence matrix], [adjacency matrix], [adjacency list], adjacency map
-- [graph traversals]: [depth-first search], [breadth-first search]
 
 **Resources:**
-- play with interactive visualizations: [graph data structure][visualgo graph], [graph traversals][visualgo graph traversals]
+- play with interactive visualizations: [graph types and representations][visualgo graph]
 
 **Project:**
 - collect data set of social network, airplane routes, or your choice
 - implement graph with appropriate representation for that data set
-- implement graph traversals: depth-first search, breadth-first search
 
 [graph adt]: https://en.wikipedia.org/wiki/Graph_(abstract_data_type)
 [graph types]: https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)#Types_of_graphs
@@ -338,7 +336,85 @@
 [breadth-first search]: https://en.wikipedia.org/wiki/Breadth-first_search
 
 [visualgo graph]: https://visualgo.net/graphds
-[visualgo graph traversals]: https://visualgo.net/dfsbfs
+
+
+### Class 14: Friday, February 24 – Graph Traversals & Spanning Trees
+
+**Topics:**
+- [graph traversals]: [depth-first search], [breadth-first search]
+- graph [connectivity], [connected components], [strongly connected components]
+- graph [spanning trees], [minimum spanning trees]:
+    - [Prim's algorithm]
+    - [Kruskal's algorithm]
+- bonus data structure: [trie (prefix/radix tree)][trie]
+
+**Resources:**
+- play with interactive visualizations: [graph traversals][visualgo traversals], [minimum spanning tree][visualgo mst]
+
+**Graph Project:**
+- implement graph traversals: depth-first search, breadth-first search
+- implement an algorithm to find connected components on your graph data set
+- implement an algorithm to find a minimum spanning tree on your graph data set
+- annotate functions with complexity analysis
+
+**Trie Project:**
+- implement trie with insert and prefix search operations
+- revisit [phone call routing] scenarios 3, 4, and 5 with trie
+- annotate functions with complexity analysis
+
+[connectivity]: https://en.wikipedia.org/wiki/Connectivity_(graph_theory)
+[connected components]: https://en.wikipedia.org/wiki/Connected_component_(graph_theory)
+[strongly connected components]: https://en.wikipedia.org/wiki/Strongly_connected_component
+[disjoint-set]: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
+[spanning trees]: https://en.wikipedia.org/wiki/Spanning_tree
+[minimum spanning trees]: https://en.wikipedia.org/wiki/Minimum_spanning_tree
+[Prim's algorithm]: https://en.wikipedia.org/wiki/Prim%27s_algorithm
+[Kruskal's algorithm]: https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+
+[visualgo traversals]: https://visualgo.net/dfsbfs
+[visualgo mst]: https://visualgo.net/mst
+
+[trie]: https://en.wikipedia.org/wiki/Trie
+[phone call routing]: http://make.sc/db-phone-call-routing
+
+
+### Class 15: Monday, February 27 – Graph Algorithms
+
+**Topics:**
+- [shortest path problem]:
+    - [A* search algorithm]
+    - [Dijkstra's algorithm]
+    - [Bellman–Ford algorithm]
+    - [Floyd–Warshall algorithm]
+- [maximum flow problem]:
+    - [Ford–Fulkerson algorithm]
+    - [Edmonds–Karp algorithm]
+    - [max-flow min-cut theorem]
+- [matching problem], [assignment problem]
+
+**Resources:**
+- play with interactive visualizations: [shortest path][visualgo shortest path], [max flow][visualgo max flow], [matching][visualgo matching]
+
+**Graph Project:**
+- implement an algorithm to find a shortest path or maximum flow on your graph data set
+- annotate functions with complexity analysis
+
+[shortest path problem]: https://en.wikipedia.org/wiki/Shortest_path_problem
+[A* search algorithm]: https://en.wikipedia.org/wiki/A*_search_algorithm
+[Dijkstra's algorithm]: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+[Bellman–Ford algorithm]: https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
+[Floyd–Warshall algorithm]: https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
+
+[maximum flow problem]: https://en.wikipedia.org/wiki/Maximum_flow_problem
+[Ford–Fulkerson algorithm]: https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm
+[Edmonds–Karp algorithm]: https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm
+[max-flow min-cut theorem]: https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem
+[matching problem]: https://en.wikipedia.org/wiki/Matching_(graph_theory)
+[assignment problem]: https://en.wikipedia.org/wiki/Assignment_problem
+
+[visualgo shortest path]: https://visualgo.net/sssp
+[visualgo max flow]: https://visualgo.net/maxflow
+[visualgo matching]: https://visualgo.net/matching
 
 
 ## Working with this GitHub repository
