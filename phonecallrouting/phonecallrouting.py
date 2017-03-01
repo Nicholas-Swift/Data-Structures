@@ -1,3 +1,4 @@
+VALUE_KEY = "*VALUE*"
 
 class Trie:
     """A Trie - Prefix tree"""
@@ -55,23 +56,30 @@ class Trie:
         """Return the value from the given item if closest"""
         characters = list(item)
         current = self.root
-        max_value = None
+        matching_value = None
 
         # Traverse through the trie
         for character in characters:
-            max_value = current.get("*VALUE*", None) if current.get("*VALUE*", None) > max_value else max_value
+            # max_value = current.get("*VALUE*", None) if current.get("*VALUE*", None) > max_value else max_value
+            # max_value = max(current.get("*VALUE*", None), max_value)
+
+            # if current.get("*VALUE*", None) is not None:
+            #     matching_value = current["*VALUE*"]
+            if VALUE_KEY in current:
+                matching_value = current[VALUE_KEY]
+
             current = current[character]
 
 
 def scenario1(entries, phone_number):
 
-    entries = {}
+    entries = {"123": 1}
     phone_number = "123456"
 
     while phone_number:
         if phone_number in entries:
             return entries[phone_number]
-        phone_number = phone_number[-1:]
+        phone_number = phone_number[:-1]
 
 def scenario2():
     entries = {}
@@ -82,7 +90,7 @@ def scenario2():
         while phone_number:
             if phone_number in entries:
                 costs.append(entries[phone_number])
-            phone_number = phone_number[-1:]
+            phone_number = phone_number[:-1]
 
     return costs
 
